@@ -21,11 +21,6 @@ export const metadata: Metadata = {
   title: "MOM Homes | Custom Home Builder — Vancouver & Burnaby",
   description:
     "Bespoke custom homes, renovations, laneway homes, and mansions across Vancouver and Burnaby. Crafted since 2015 by Tim and the MOM Homes team.",
-  icons: {
-    icon:      '/mh-logo.png',
-    shortcut:  '/mh-logo.png',
-    apple:     '/mh-logo.png',
-  },
 };
 
 export default function RootLayout({

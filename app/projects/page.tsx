@@ -21,6 +21,7 @@ const allProjects = [
     aspect:   '21 / 9',
     image:    '/images/Main%201.jpg',
     sizes:    '100vw',
+    slug:     'country-home',
   },
   {
     id:       2,
@@ -32,6 +33,7 @@ const allProjects = [
     aspect:   '4 / 3',
     image:    '/images/Main%202.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 42vw',
+    slug:     'modern',
   },
   {
     id:       3,
@@ -43,17 +45,19 @@ const allProjects = [
     aspect:   '4 / 3',
     image:    '/images/Main%203.jpg',
     sizes:    '(max-width: 1024px) 100vw, 58vw',
+    slug:     'international-modern',
   },
   {
     id:       4,
     name:     'Contemporary',
-    type:     'Laneway Home',
+    type:     'Custom Home',
     location: 'Vancouver',
     year:     '2022',
     col:      'lg:col-span-7',
     aspect:   '4 / 3',
     image:    '/images/Main%204.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 58vw',
+    slug:     'contemporary',
   },
   {
     id:       5,
@@ -65,6 +69,7 @@ const allProjects = [
     aspect:   '4 / 3',
     image:    '/images/Main%205.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 42vw',
+    slug:     'vancouver-standard',
   },
   {
     id:       6,
@@ -142,15 +147,19 @@ function ProjectCard({
   i: number;
   uniform: boolean;
 }) {
+  const Tag = 'slug' in p && p.slug ? motion.a : motion.div;
+  const linkProps = 'slug' in p && p.slug ? { href: `/projects/${p.slug}` } : {};
+
   return (
-    <motion.div
+    <Tag
       key={p.id}
+      {...linkProps}
       layout
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 16 }}
       transition={{ duration: 0.7, delay: i * 0.06, ease: EASE }}
-      className={`${uniform ? 'col-span-1' : p.col} group relative overflow-hidden rounded-[2px] ${
+      className={`${uniform ? 'col-span-1' : p.col} group relative overflow-hidden rounded-[2px] ${'slug' in p && p.slug ? 'cursor-pointer' : ''} ${
         p.id === 1 && !uniform ? 'aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]' : ''
       } ${uniform ? 'aspect-[4/3]' : ''}`}
       style={p.id === 1 || uniform ? undefined : { aspectRatio: p.aspect }}
@@ -194,7 +203,7 @@ function ProjectCard({
           <span className="font-body text-[10px] text-cream/30 shrink-0">{p.year}</span>
         </div>
       </div>
-    </motion.div>
+    </Tag>
   );
 }
 

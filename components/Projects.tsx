@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const EASE = [0.32, 0.72, 0, 1] as const;
 
@@ -16,6 +17,7 @@ const projects = [
     aspect:   '21 / 9',
     image:    '/images/Main%201.jpg',
     sizes:    '100vw',
+    slug:     'country-home',
   },
   {
     name:     'Modern',
@@ -26,6 +28,7 @@ const projects = [
     aspect:   '4 / 3',
     image:    '/images/Main%202.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 42vw',
+    slug:     'modern',
   },
   {
     name:     'International Modern',
@@ -36,16 +39,18 @@ const projects = [
     aspect:   '4 / 3',
     image:    '/images/Main%203.jpg',
     sizes:    '(max-width: 1024px) 100vw, 58vw',
+    slug:     'international-modern',
   },
   {
     name:     'Contemporary',
-    type:     'Laneway Home',
+    type:     'Custom Home',
     location: 'Vancouver',
     year:     '2022',
     col:      'lg:col-span-7',
     aspect:   '4 / 3',
     image:    '/images/Main%204.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 58vw',
+    slug:     'contemporary',
   },
   {
     name:     'Vancouver Standard',
@@ -56,6 +61,7 @@ const projects = [
     aspect:   '4 / 3',
     image:    '/images/Main%205.jpeg',
     sizes:    '(max-width: 1024px) 100vw, 42vw',
+    slug:     'vancouver-standard',
   },
 ];
 
@@ -103,12 +109,13 @@ export default function Projects() {
       {/* Editorial grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
         {projects.map((p, i) => (
-          <motion.div
+          <motion.a
             key={p.name}
+            href={`/projects/${p.slug}`}
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.06 + i * 0.1, ease: EASE }}
-            className={`${p.col} group relative overflow-hidden rounded-[2px] ${
+            className={`${p.col} group relative overflow-hidden rounded-[2px] block cursor-pointer ${
               i === 0 ? 'aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]' : ''
             }`}
             style={i === 0 ? undefined : { aspectRatio: p.aspect }}
@@ -152,7 +159,7 @@ export default function Projects() {
                 <span className="font-body text-[10px] text-cream/30 shrink-0">{p.year}</span>
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
 

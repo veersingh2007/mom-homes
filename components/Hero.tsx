@@ -15,9 +15,9 @@ export default function Hero() {
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-bg/50" />
-      <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-bg/30" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.45)_100%)]" />
+      <div className="absolute inset-0 bg-bg/30 md:bg-bg/50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-bg/50 via-transparent to-bg/20 md:from-bg/60 md:to-bg/30" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.2)_100%)] md:bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.45)_100%)]" />
 
       {/* ── Main content ── */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-end pb-20 md:pb-28 px-4">
